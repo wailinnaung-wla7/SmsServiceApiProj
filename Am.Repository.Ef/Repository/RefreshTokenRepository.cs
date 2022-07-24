@@ -24,7 +24,7 @@ namespace Am.Repository.Ef.Repository
             return model;
         }
 
-        public async Task<bool> UpdateRevokedTokenAsync(RefreshToken model,string reason,string newToken)
+        public async Task<bool> UpdateRevokedTokenAsync(RefreshToken model,string reason,string newToken=null)
         {
             var existingToken = await _context.RefreshToken.FindAsync(model.Id);
             existingToken.Revoked = DateTime.UtcNow;

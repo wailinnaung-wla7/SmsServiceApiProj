@@ -17,5 +17,7 @@ namespace Am.Infrastructure.IServices
         Task<RefreshToken> CheckRefreshToken(string RefreshToken);
         Task<AuthenticationResponse> RefreshToken(RefreshToken token);
 
+        Task<bool> RevokeRefreshToken(RefreshToken token);
+
     }
 }

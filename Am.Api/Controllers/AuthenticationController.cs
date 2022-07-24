@@ -51,5 +51,15 @@ namespace Am.Api.Controllers
             var response = await _authenticationService.RefreshToken(tokenInfo);
             return Ok(response);
         }
+        [HttpPost("revoke-token")]
+        public async Task<IActionResult> RevokeToken(RevokeTokenRequestDTO request)
+        {
+            var tokenInfo = await _authenticationService.CheckRefreshToken(request.Token);
+            if (tokenInfo == null || !tokenInfo.IsActive)
+                BadRequest("Invalid Token");
+
+            await _authenticationService.RevokeRefreshToken(tokenInfo);
+            return Ok(new { message = "Token revoked" });
+        }
     }
 }

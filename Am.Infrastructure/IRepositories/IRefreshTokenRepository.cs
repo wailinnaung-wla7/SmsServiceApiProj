@@ -11,7 +11,7 @@ namespace Am.Infrastructure.IRepositories
     {
         Task<RefreshToken> AddAsync(RefreshToken model);
         Task<RefreshToken> GetAsync(string token);
-        Task<bool> UpdateRevokedTokenAsync(RefreshToken model,string reason, string newToken);
+        Task<bool> UpdateRevokedTokenAsync(RefreshToken model,string reason, string newToken=null);
         Task<bool> UpdateCompromisedTokensAsync(RefreshToken model, string reason);
         Task<bool> DeleteAsync(string ServiceCode, int Days);
     }

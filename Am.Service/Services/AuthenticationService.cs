@@ -80,7 +80,7 @@ namespace Am.Service.Services
             // generate new jwt
             var jwtToken = CreateToken(tokenInfo.ServiceCode);
 
-            return new AuthenticationResponse { Token = new JwtSecurityTokenHandler().WriteToken(jwtToken), RefreshToken = newRefreshToken,Expiration = jwtToken.ValidTo };
+            return new AuthenticationResponse { Token = new JwtSecurityTokenHandler().WriteToken(jwtToken), RefreshToken = newRefreshToken, Expiration = jwtToken.ValidTo };
         }
         public async Task<RefreshToken> CheckRefreshToken(string RefreshToken)
         {
@@ -93,15 +93,18 @@ namespace Am.Service.Services
             }
             return refreshTokenInfo;
         }
-
-
+        public async Task<bool> RevokeRefreshToken(RefreshToken token)
+        {
+            await _refreshTokenRepository.UpdateRevokedTokenAsync(token, "Revoked without replacement(Log Out)");
+            return true;
+        }
+        #region Helpers
         private async Task<string> rotateRefreshToken(RefreshToken refreshToken)
         {
             var newRefreshToken = await GenerateRefreshToken(refreshToken.ServiceCode);
             await _refreshTokenRepository.UpdateRevokedTokenAsync(refreshToken, "Replaced by new token", newRefreshToken);
             return newRefreshToken;
         }
-
         private async Task<bool> removeOldRefreshTokens(RefreshToken token)
         {
             // remove old inactive refresh tokens from user based on TTL in app settings
@@ -109,5 +112,6 @@ namespace Am.Service.Services
             await _refreshTokenRepository.DeleteAsync(token.ServiceCode, KeepTokenDays);
             return true;
         }
+        #endregion 
     }
 }

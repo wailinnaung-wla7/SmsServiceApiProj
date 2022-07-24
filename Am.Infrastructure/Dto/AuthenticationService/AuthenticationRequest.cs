@@ -14,4 +14,8 @@ namespace Am.Infrastructure.Dto.AuthenticationService
     {
         public string RefreshToken { get; set; }
     }
+    public class RevokeTokenRequestDTO
+    {
+        public string Token { get; set; }
+    }
 }
