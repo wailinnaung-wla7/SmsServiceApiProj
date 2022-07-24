@@ -19,6 +19,7 @@ namespace Am.Repository.Ef.Repository
         }
         public async Task<RefreshToken> AddAsync(RefreshToken model)
         {
+            model.IsActive = !model.IsRevoked && !model.IsExpired;
             await _context.AddAsync(model);
             await _context.SaveChangesAsync();
             return model;
@@ -30,6 +31,7 @@ namespace Am.Repository.Ef.Repository
             existingToken.Revoked = DateTime.UtcNow;
             existingToken.ReasonRevoked = reason;
             existingToken.ReplacedByToken = newToken;
+            existingToken.IsActive = false;
             var updated = await _context.SaveChangesAsync();
             return updated > 0;
         }
@@ -40,6 +42,7 @@ namespace Am.Repository.Ef.Repository
             {
                 token.Revoked = DateTime.UtcNow;
                 token.ReasonRevoked = reason;
+                token.IsActive = false;
             }
             var updated = await _context.SaveChangesAsync();
             return updated > 0;

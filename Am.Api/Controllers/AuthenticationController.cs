@@ -46,7 +46,7 @@ namespace Am.Api.Controllers
         {
             var tokenInfo = await _authenticationService.CheckRefreshToken(request.RefreshToken);
             if (tokenInfo == null || !tokenInfo.IsActive)
-               BadRequest("Invalid Token");
+               return BadRequest("Invalid Token");
 
             var response = await _authenticationService.RefreshToken(tokenInfo);
             return Ok(response);

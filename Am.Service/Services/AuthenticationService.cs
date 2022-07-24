@@ -29,6 +29,7 @@ namespace Am.Service.Services
             _configuration = configuration;
             _refreshTokenRepository = refreshTokenRepository;
         }
+        
         public JwtSecurityToken CreateToken(string ServiceCode)
         {
             var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
@@ -48,7 +49,6 @@ namespace Am.Service.Services
 
             return token;
         }
-
         public async Task<string> GenerateRefreshToken(string ServiceCode)
         {
             var token = Convert.ToBase64String(RandomNumberGenerator.GetBytes(64));
@@ -58,14 +58,7 @@ namespace Am.Service.Services
             {
                 await GenerateRefreshToken(ServiceCode);
             }
-            var refreshToken = new RefreshToken
-            {
-                Token = token,
-                // token is valid for 7 days
-                Expires = DateTime.UtcNow.AddDays(7),
-                CreatedDate = DateTime.UtcNow,
-                ServiceCode = ServiceCode
-            };
+            var refreshToken = PopulateRefreshToken(token, ServiceCode);
             await _refreshTokenRepository.AddAsync(refreshToken);
             return token;
 
@@ -101,9 +94,11 @@ namespace Am.Service.Services
         #region Helpers
         private async Task<string> rotateRefreshToken(RefreshToken refreshToken)
         {
-            var newRefreshToken = await GenerateRefreshToken(refreshToken.ServiceCode);
-            await _refreshTokenRepository.UpdateRevokedTokenAsync(refreshToken, "Replaced by new token", newRefreshToken);
-            return newRefreshToken;
+            var newToken = await GenerateRefreshToken(refreshToken.ServiceCode);
+            var newRefreshToken = PopulateRefreshToken(newToken, refreshToken.ServiceCode);
+            await _refreshTokenRepository.AddAsync(newRefreshToken);
+            await _refreshTokenRepository.UpdateRevokedTokenAsync(refreshToken, "Replaced by new token", newToken);
+            return newToken;
         }
         private async Task<bool> removeOldRefreshTokens(RefreshToken token)
         {
@@ -111,6 +106,17 @@ namespace Am.Service.Services
             var KeepTokenDays = Convert.ToInt32(_configuration["AppSettings:RefreshTokenTTL"]);
             await _refreshTokenRepository.DeleteAsync(token.ServiceCode, KeepTokenDays);
             return true;
+        }
+        private RefreshToken PopulateRefreshToken (string token,string ServiceCode)
+        {
+            return new RefreshToken
+            {
+                Token = token,
+                // token is valid for 7 days
+                Expires = DateTime.UtcNow.AddDays(7),
+                CreatedDate = DateTime.UtcNow,
+                ServiceCode = ServiceCode
+            };
         }
         #endregion 
     }
