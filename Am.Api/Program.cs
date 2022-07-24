@@ -32,6 +32,7 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Agent Model HTTP Api" });
 });
 builder.Services.AddConfig();
+builder.Services.AddAuthenticationConfig(configuration);
 
 var app = builder.Build();
 
@@ -42,7 +43,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseRouting();
+
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
