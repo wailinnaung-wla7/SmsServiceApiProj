@@ -22,7 +22,7 @@ namespace Am.Infrastructure.Dto.SmsService
         public List<string> FailedToSendNumbers { get; set; } = new List<string>();
     }
 
-    public class SmsThirdPartyResponseDTO
+    public class SmsThirdPartyResponseDTO 
     {
         public List<string> FailedToSendNumbers { get; set; } = new List<string>();
     }

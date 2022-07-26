@@ -20,7 +20,7 @@ namespace Am.Service.Helpers
             int random = rnd.Next(40, 101);
             return random;
         }
-        public static async Task<dynamic> CallServiceClient(Object Obj)
+        public static async Task<string> CallServiceClient(Object Obj)
         {
             HttpClientHandler clientHandler = new HttpClientHandler();
             clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
@@ -32,8 +32,9 @@ namespace Am.Service.Helpers
                 using (var response = await httpClient.PostAsync("https://localhost:7286/api/v1/SmsService/SendSmsFromThirdParty", content))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    var Object = JsonConvert.DeserializeObject<dynamic>(apiResponse);
-                    return Object;
+                    return apiResponse;
+                    //var Object = JsonConvert.DeserializeObject < dynamic > (apiResponse);
+                    //return Object;
                 }
             }
         }
@@ -55,7 +56,7 @@ namespace Am.Service.Helpers
             return responselst;
         }
 
-        public static dynamic Cast(dynamic source, Type dest)
+        public static Type Cast(dynamic source, Type dest)
         {
             return Convert.ChangeType(source, dest);
         }

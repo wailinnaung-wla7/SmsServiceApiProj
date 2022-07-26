@@ -124,9 +124,9 @@ namespace Am.Repository.Ef.Migrations
                         new
                         {
                             Id = 1L,
-                            Code = "120220725151633",
+                            Code = "120220726031755",
                             CreatedBy = "",
-                            CreatedDate = new DateTime(2022, 7, 25, 15, 16, 33, 877, DateTimeKind.Utc).AddTicks(4275),
+                            CreatedDate = new DateTime(2022, 7, 26, 3, 17, 55, 892, DateTimeKind.Utc).AddTicks(483),
                             DailyLimit = 40,
                             IsActive = false,
                             Name = "Test Service",
@@ -184,11 +184,11 @@ namespace Am.Repository.Ef.Migrations
                         {
                             Id = 1L,
                             CreatedBy = "",
-                            CreatedDate = new DateTime(2022, 7, 25, 15, 16, 33, 877, DateTimeKind.Utc).AddTicks(4651),
+                            CreatedDate = new DateTime(2022, 7, 26, 3, 17, 55, 892, DateTimeKind.Utc).AddTicks(612),
                             IsActive = false,
                             Message = "Hi there!",
                             PhoneNumber = "09795831832",
-                            ServiceCode = "120220725151633",
+                            ServiceCode = "120220726031755",
                             Status = "",
                             UpdatedBy = ""
                         });
@@ -241,14 +241,14 @@ namespace Am.Repository.Ef.Migrations
                         {
                             Id = 1L,
                             CreatedBy = "minmhan",
-                            CreatedDate = new DateTime(2022, 7, 25, 15, 16, 33, 877, DateTimeKind.Utc).AddTicks(3637),
-                            Date = new DateTime(2022, 7, 25, 15, 16, 33, 877, DateTimeKind.Utc).AddTicks(3635),
+                            CreatedDate = new DateTime(2022, 7, 26, 3, 17, 55, 892, DateTimeKind.Utc).AddTicks(137),
+                            Date = new DateTime(2022, 7, 26, 3, 17, 55, 892, DateTimeKind.Utc).AddTicks(135),
                             IsActive = true,
                             Summary = "Dummy Data",
                             TemperatureC = 32,
                             TemperatureF = 98,
                             UpdatedBy = "minmhan",
-                            UpdatedDate = new DateTime(2022, 7, 25, 15, 16, 33, 877, DateTimeKind.Utc).AddTicks(3637)
+                            UpdatedDate = new DateTime(2022, 7, 26, 3, 17, 55, 892, DateTimeKind.Utc).AddTicks(137)
                         });
                 });
 #pragma warning restore 612, 618

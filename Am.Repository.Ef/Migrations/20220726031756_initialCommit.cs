@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Am.Repository.Ef.Migrations
 {
-    public partial class initialcommit : Migration
+    public partial class initialCommit : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -100,17 +100,17 @@ namespace Am.Repository.Ef.Migrations
             migrationBuilder.InsertData(
                 table: "Service",
                 columns: new[] { "Id", "Code", "CreatedBy", "CreatedDate", "DailyLimit", "IsActive", "Name", "RefreshToken", "RefreshTokenExpiryTime", "UpdatedBy", "UpdatedDate" },
-                values: new object[] { 1L, "120220725151633", "", new DateTime(2022, 7, 25, 15, 16, 33, 877, DateTimeKind.Utc).AddTicks(4275), 40, false, "Test Service", null, null, "", null });
+                values: new object[] { 1L, "120220726031755", "", new DateTime(2022, 7, 26, 3, 17, 55, 892, DateTimeKind.Utc).AddTicks(483), 40, false, "Test Service", null, null, "", null });
 
             migrationBuilder.InsertData(
                 table: "SmsTransaction",
                 columns: new[] { "Id", "CreatedBy", "CreatedDate", "IsActive", "Message", "PhoneNumber", "ServiceCode", "Status", "UpdatedBy", "UpdatedDate" },
-                values: new object[] { 1L, "", new DateTime(2022, 7, 25, 15, 16, 33, 877, DateTimeKind.Utc).AddTicks(4651), false, "Hi there!", "09795831832", "120220725151633", "", "", null });
+                values: new object[] { 1L, "", new DateTime(2022, 7, 26, 3, 17, 55, 892, DateTimeKind.Utc).AddTicks(612), false, "Hi there!", "09795831832", "120220726031755", "", "", null });
 
             migrationBuilder.InsertData(
                 table: "WeatherForecast",
                 columns: new[] { "Id", "CreatedBy", "CreatedDate", "Date", "IsActive", "Summary", "TemperatureC", "TemperatureF", "UpdatedBy", "UpdatedDate" },
-                values: new object[] { 1L, "minmhan", new DateTime(2022, 7, 25, 15, 16, 33, 877, DateTimeKind.Utc).AddTicks(3637), new DateTime(2022, 7, 25, 15, 16, 33, 877, DateTimeKind.Utc).AddTicks(3635), true, "Dummy Data", 32, 98, "minmhan", new DateTime(2022, 7, 25, 15, 16, 33, 877, DateTimeKind.Utc).AddTicks(3637) });
+                values: new object[] { 1L, "minmhan", new DateTime(2022, 7, 26, 3, 17, 55, 892, DateTimeKind.Utc).AddTicks(137), new DateTime(2022, 7, 26, 3, 17, 55, 892, DateTimeKind.Utc).AddTicks(135), true, "Dummy Data", 32, 98, "minmhan", new DateTime(2022, 7, 26, 3, 17, 55, 892, DateTimeKind.Utc).AddTicks(137) });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

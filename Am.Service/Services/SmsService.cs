@@ -4,6 +4,8 @@ using Am.Infrastructure.IRepositories;
 using Am.Infrastructure.IServices;
 using Am.Service.Helpers;
 using AutoMapper;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +28,6 @@ namespace Am.Service.Services
             _mapper = mapper;
         }
 
-        //public async Task<long> CreateSmsService(SmsServiceCreateDTO smsService)
         public async Task<SmsServiceGetResponseDTO> CreateSmsService(SmsServiceCreateDTO smsService)
         {
             var model = _mapper.Map<SmsServiceEntity>(smsService);
@@ -61,9 +62,9 @@ namespace Am.Service.Services
         }
         public async Task<SmsThirdPartyResponseDTO> SendBulkSms(SendBulkSmsRequestDTO request, SmsServiceGetResponseDTO service)
         {
-            SmsThirdPartyResponseDTO response =General.Cast(
-                await General.CallServiceClient(request),typeof(SmsThirdPartyResponseDTO));
-            return response;
+            string obj = await General.CallServiceClient(request);
+            SmsThirdPartyResponseDTO res = JsonConvert.DeserializeObject<SmsThirdPartyResponseDTO>(obj); 
+            return res;
 
         }
 

@@ -6,7 +6,7 @@ using System.Text;
 namespace Am.Api.Helpers
 {
     // To Ask about static class usage (DI)
-    public static class JwtHelper
+    public class JwtHelper
     {
         private static IConfiguration _config;
         public static void JWTClaimHelperConfigure(IConfiguration config)
