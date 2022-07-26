@@ -59,5 +59,13 @@ namespace Am.Service.Services
             var viewModel = _mapper.Map<SmsServiceGetResponseDTO>(model);
             return viewModel;
         }
+        public async Task<SmsThirdPartyResponseDTO> SendBulkSms(SendBulkSmsRequestDTO request, SmsServiceGetResponseDTO service)
+        {
+            SmsThirdPartyResponseDTO response =General.Cast(
+                await General.CallServiceClient(request),typeof(SmsThirdPartyResponseDTO));
+            return response;
+
+        }
+
     }
 }

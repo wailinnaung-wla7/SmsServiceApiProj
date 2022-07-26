@@ -17,6 +17,8 @@ namespace Am.Service
             //SmsService
             CreateMap<Infrastructure.Entities.SmsServiceEntity, Infrastructure.Dto.SmsService.SmsServiceGetResponseDTO>();
             CreateMap<Infrastructure.Dto.SmsService.SmsServiceCreateDTO, Infrastructure.Entities.SmsServiceEntity>();
+            //SmsTransaction
+            CreateMap<Infrastructure.Dto.SmsService.SMSTransactionCreationDTO, Infrastructure.Entities.SmsTransaction>();
         }
     }
 }

@@ -1,5 +1,6 @@
 using Am.Api.Extensions;
 using Am.Api.Filters;
+using Am.Api.Helpers;
 using Am.Repository.Ef;
 using Am.Service;
 using Microsoft.EntityFrameworkCore;
@@ -42,6 +43,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+JwtHelper.JWTClaimHelperConfigure(configuration);
 
 app.UseRouting();
 

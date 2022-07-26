@@ -11,7 +11,7 @@ namespace Am.Infrastructure.IRepositories
     {
 
         Task<List<SmsTransaction>> GetAllTransactionsAsync();
-        Task<List<SmsTransaction>> GetTransactionsByServiceIdAsync(long id);
+        Task<List<SmsTransaction>> GetTransactionsByServiceCodeAsync(string ServiceCode);
         Task<bool> CreateSmsTransactionAsync(List<SmsTransaction> smsTransactions);
 
     }

@@ -21,7 +21,7 @@ namespace Am.Repository.Ef.EntityConfiguration
             new SmsTransaction
             {
                 Id = 1,
-                ServiceId = 1,
+                ServiceCode = "1" + DateTime.UtcNow.ToString("yyyyMMddHHmmss"),
                 PhoneNumber =  "09795831832",
                 Message = "Hi there!",
                 CreatedDate = DateTime.UtcNow

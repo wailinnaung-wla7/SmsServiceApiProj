@@ -8,9 +8,10 @@ namespace Am.Infrastructure.Entities
 {
     public class SmsTransaction :  BaseEntity
     {
-        public long ServiceId { get; set; }
+        public string ServiceCode { get; set; }
         public string PhoneNumber { get; set; }
         public string Message { get; set; }
+        public string Status { get; set; } = string.Empty;
 
     }
 }

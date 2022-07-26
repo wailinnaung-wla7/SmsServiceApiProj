@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Am.Infrastructure.Dto.SmsService;
+using Am.Infrastructure.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +10,7 @@ namespace Am.Infrastructure.IServices
 {
     public interface ISmsTransactionService
     {
+        Task<bool> CreateSMSTransactions(SendBulkSmsRequestDTO requestModel, List<string> FailedNumbers, string ServiceCode);
+        Task<int> GetSmsTransactionsForToday(string ServiceCode);
     }
 }

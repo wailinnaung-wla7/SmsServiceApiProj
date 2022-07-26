@@ -96,7 +96,7 @@ namespace Am.Service.Services
         {
             var newToken = await GenerateRefreshToken(refreshToken.ServiceCode);
             var newRefreshToken = PopulateRefreshToken(newToken, refreshToken.ServiceCode);
-            await _refreshTokenRepository.AddAsync(newRefreshToken);
+            //await _refreshTokenRepository.AddAsync(newRefreshToken);
             await _refreshTokenRepository.UpdateRevokedTokenAsync(refreshToken, "Replaced by new token", newToken);
             return newToken;
         }

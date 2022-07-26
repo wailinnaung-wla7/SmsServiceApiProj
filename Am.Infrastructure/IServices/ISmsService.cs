@@ -12,5 +12,6 @@ namespace Am.Infrastructure.IServices
         Task<SmsServiceGetResponseDTO> GetAsync(string Code);
         Task<SmsServiceGetResponseDTO> GetAsync(long id);
         Task<SmsServiceGetResponseDTO> CreateSmsService(SmsServiceCreateDTO smsService);
+        Task<SmsThirdPartyResponseDTO> SendBulkSms(SendBulkSmsRequestDTO request, SmsServiceGetResponseDTO service);
     }
 }

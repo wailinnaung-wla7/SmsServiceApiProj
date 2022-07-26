@@ -23,7 +23,7 @@ namespace Am.Api.Extensions
             services.AddTransient<IWeatherForecastService, WeatherForecastService>();
             services.AddTransient<ISmsService, SmsService>();
             services.AddTransient<IAuthenticationService, AuthenticationService>();
-            //services.AddTransient<I, WeatherForecastRepository>();
+            services.AddTransient<ISmsTransactionService, SmsTransactionService>();
 
             #endregion           
 

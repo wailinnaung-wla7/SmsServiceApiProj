@@ -61,9 +61,10 @@ namespace Am.Repository.Ef.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    ServiceId = table.Column<long>(type: "bigint", nullable: false),
+                    ServiceCode = table.Column<string>(type: "text", nullable: false),
                     PhoneNumber = table.Column<string>(type: "text", nullable: false),
                     Message = table.Column<string>(type: "text", nullable: false),
+                    Status = table.Column<string>(type: "text", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     CreatedBy = table.Column<string>(type: "text", nullable: false),
@@ -99,17 +100,17 @@ namespace Am.Repository.Ef.Migrations
             migrationBuilder.InsertData(
                 table: "Service",
                 columns: new[] { "Id", "Code", "CreatedBy", "CreatedDate", "DailyLimit", "IsActive", "Name", "RefreshToken", "RefreshTokenExpiryTime", "UpdatedBy", "UpdatedDate" },
-                values: new object[] { 1L, "120220724132818", "", new DateTime(2022, 7, 24, 13, 28, 18, 314, DateTimeKind.Utc).AddTicks(6956), 40, false, "Test Service", null, null, "", null });
+                values: new object[] { 1L, "120220725151633", "", new DateTime(2022, 7, 25, 15, 16, 33, 877, DateTimeKind.Utc).AddTicks(4275), 40, false, "Test Service", null, null, "", null });
 
             migrationBuilder.InsertData(
                 table: "SmsTransaction",
-                columns: new[] { "Id", "CreatedBy", "CreatedDate", "IsActive", "Message", "PhoneNumber", "ServiceId", "UpdatedBy", "UpdatedDate" },
-                values: new object[] { 1L, "", new DateTime(2022, 7, 24, 13, 28, 18, 314, DateTimeKind.Utc).AddTicks(7186), false, "Hi there!", "09795831832", 1L, "", null });
+                columns: new[] { "Id", "CreatedBy", "CreatedDate", "IsActive", "Message", "PhoneNumber", "ServiceCode", "Status", "UpdatedBy", "UpdatedDate" },
+                values: new object[] { 1L, "", new DateTime(2022, 7, 25, 15, 16, 33, 877, DateTimeKind.Utc).AddTicks(4651), false, "Hi there!", "09795831832", "120220725151633", "", "", null });
 
             migrationBuilder.InsertData(
                 table: "WeatherForecast",
                 columns: new[] { "Id", "CreatedBy", "CreatedDate", "Date", "IsActive", "Summary", "TemperatureC", "TemperatureF", "UpdatedBy", "UpdatedDate" },
-                values: new object[] { 1L, "minmhan", new DateTime(2022, 7, 24, 13, 28, 18, 314, DateTimeKind.Utc).AddTicks(6426), new DateTime(2022, 7, 24, 13, 28, 18, 314, DateTimeKind.Utc).AddTicks(6423), true, "Dummy Data", 32, 98, "minmhan", new DateTime(2022, 7, 24, 13, 28, 18, 314, DateTimeKind.Utc).AddTicks(6426) });
+                values: new object[] { 1L, "minmhan", new DateTime(2022, 7, 25, 15, 16, 33, 877, DateTimeKind.Utc).AddTicks(3637), new DateTime(2022, 7, 25, 15, 16, 33, 877, DateTimeKind.Utc).AddTicks(3635), true, "Dummy Data", 32, 98, "minmhan", new DateTime(2022, 7, 25, 15, 16, 33, 877, DateTimeKind.Utc).AddTicks(3637) });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
