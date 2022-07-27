@@ -1,9 +1,11 @@
 ﻿using Am.Api.Helpers;
+using Am.Infrastructure.Dto.Pagination;
 using Am.Infrastructure.Dto.SmsService;
 using Am.Infrastructure.Entities;
 using Am.Infrastructure.IServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace Am.Api.Controllers
 {
@@ -73,6 +75,24 @@ namespace Am.Api.Controllers
                 request.PhoneNumbers.Count-thirdPartyResponseDTO.FailedToSendNumbers.Count()
                 ))
             });
+        }
+        [AllowAnonymous]
+        [HttpGet("Sms-Transaction")]
+        public async Task<IActionResult> GetSmsTransaction([FromQuery]SmsTransactionParameters parameters)
+        {
+            var trans = await _smsTransactionService.GetSmsTransactions(parameters);
+            var metadata = new
+            {
+                trans.TotalCount,
+                trans.PageSize,
+                trans.CurrentPage,
+                trans.TotalPages,
+                trans.HasNext,
+                trans.HasPrevious
+            };
+            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(metadata));
+
+            return Ok(trans);
         }
 
         //ForMockSMSProvider

@@ -1,4 +1,5 @@
-﻿using Am.Infrastructure.Entities;
+﻿using Am.Infrastructure.Dto.Pagination;
+using Am.Infrastructure.Entities;
 using Am.Infrastructure.IRepositories;
 using Microsoft.EntityFrameworkCore;
 using System;

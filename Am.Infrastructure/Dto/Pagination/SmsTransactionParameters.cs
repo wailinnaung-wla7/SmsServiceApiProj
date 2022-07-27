@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Am.Infrastructure.Abstract;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace Am.Infrastructure.Dto.Pagination
 {
     public class SmsTransactionParameters : PaginationAbstractClass
     {
-
+        public string ServiceCode { get; set; } = string.Empty;
     }
 }

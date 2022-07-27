@@ -1,4 +1,5 @@
-﻿using Am.Infrastructure.Dto.SmsService;
+﻿using Am.Infrastructure.Dto.Pagination;
+using Am.Infrastructure.Dto.SmsService;
 using Am.Infrastructure.Entities;
 using Am.Infrastructure.IRepositories;
 using Am.Infrastructure.IServices;
@@ -32,6 +33,10 @@ namespace Am.Service.Services
         {
             var tranLst = await _smsTransactionRepository.GetTransactionsByServiceCodeAsync(ServiceCode);
             return tranLst.Count();
+        }
+        public async Task<PagedObjectList<SmsTransaction>> GetSmsTransactions(SmsTransactionParameters parameters)
+        {
+            return  await _smsTransactionRepository.GetSmsTransactions(parameters);
         }
     }
 }
