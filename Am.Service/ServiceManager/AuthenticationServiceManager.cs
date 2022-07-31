@@ -1,4 +1,5 @@
 ﻿using Am.Infrastructure.Dto.AuthenticationService;
+using Am.Infrastructure.Exceptions;
 using Am.Infrastructure.IServices;
 using Microsoft.Extensions.Logging;
 using System;
@@ -27,8 +28,8 @@ namespace Am.Service.ServiceManager
         public async Task<AuthenticationResponse>Authenticate(AuthenticationServiceRequestDTO request)
         {
             var Service = await _smsService.GetAsync(request.Code);
-            //if (Service == null)
-            //{ throw new Exception(); }
+            if (Service == null)
+            { throw new Exception("Service Not Found"); }
             var token = _authenticationService.CreateToken(request.Code);
             var refreshToken = await _authenticationService.GenerateRefreshToken(request.Code);
             return new AuthenticationResponse

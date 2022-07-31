@@ -4,6 +4,8 @@ using Am.Api.Helpers;
 using Am.Repository.Ef;
 using Am.Service;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
+using Serilog.Formatting.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,6 +36,9 @@ builder.Services.AddSwaggerGen(c =>
 });
 builder.Services.AddConfig();
 builder.Services.AddAuthenticationConfig(configuration);
+//builder.Host.UseSerilog((ctx, lc) => lc
+//        //.WriteTo.Console(new JsonFormatter()))
+//        .WriteTo.Seq("http://localhost:5341"));
 
 var app = builder.Build();
 

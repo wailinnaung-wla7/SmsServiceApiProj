@@ -28,6 +28,7 @@ namespace Am.Api.Controllers
         public async Task<IActionResult> Authenticate([FromBody] AuthenticationServiceRequestDTO request)
         {
             var result = await _authenticationServiceManager.Authenticate(request);
+            _logger.LogInformation("This is a log message. This is an object: {User}", new { name = "John Doe" });
             return Ok(result);
         }
         [HttpPost("refresh-token")]
