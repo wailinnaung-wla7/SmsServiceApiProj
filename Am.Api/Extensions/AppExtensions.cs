@@ -1,6 +1,7 @@
 ﻿using Am.Infrastructure.IRepositories;
 using Am.Infrastructure.IServices;
 using Am.Repository.Ef.Repository;
+using Am.Service.ServiceManager;
 using Am.Service.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -23,6 +24,7 @@ namespace Am.Api.Extensions
             services.AddTransient<IWeatherForecastService, WeatherForecastService>();
             services.AddTransient<ISmsService, SmsService>();
             services.AddTransient<IAuthenticationService, AuthenticationService>();
+            services.AddTransient<AuthenticationServiceManager>();
             services.AddTransient<ISmsTransactionService, SmsTransactionService>();
 
             #endregion           
